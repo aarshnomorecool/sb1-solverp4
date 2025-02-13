@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: theme(colors.blue.500);
+  }
+
+  :root[data-theme='light'] {
+    --bg-primary: theme(colors.white);
+    --bg-secondary: theme(colors.gray.50);
+    --bg-tertiary: theme(colors.gray.100);
+    --text-primary: theme(colors.gray.900);
+    --text-secondary: theme(colors.gray.600);
+    --border-color: theme(colors.gray.200);
+  }
+
+  :root[data-theme='dark'] {
+    --bg-primary: theme(colors.gray.900);
+    --bg-secondary: theme(colors.gray.800);
+    --bg-tertiary: theme(colors.gray.700);
+    --text-primary: theme(colors.white);
+    --text-secondary: theme(colors.gray.300);
+    --border-color: theme(colors.gray.700);
+  }
+
+  :root[data-theme='pink'] {
+    --primary: theme(colors.pink.500);
+    --bg-primary: theme(colors.pink.50);
+    --bg-secondary: theme(colors.pink.100);
+    --bg-tertiary: theme(colors.pink.200);
+    --text-primary: theme(colors.pink.900);
+    --text-secondary: theme(colors.pink.600);
+    --border-color: theme(colors.pink.200);
+  }
+
+  :root[data-theme='green'] {
+    --primary: theme(colors.emerald.500);
+    --bg-primary: theme(colors.emerald.50);
+    --bg-secondary: theme(colors.emerald.100);
+    --bg-tertiary: theme(colors.emerald.200);
+    --text-primary: theme(colors.emerald.900);
+    --text-secondary: theme(colors.emerald.600);
+    --border-color: theme(colors.emerald.200);
+  }
+
+  :root[data-theme='oled'] {
+    --bg-primary: #000000;
+    --bg-secondary: #0A0A0A;
+    --bg-tertiary: #141414;
+    --text-primary: theme(colors.white);
+    --text-secondary: theme(colors.gray.300);
+    --border-color: theme(colors.gray.800);
+  }
+
+  body {
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300;
+  }
+}
+
+.dropdown {
+  @apply w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg px-4 py-3 text-[var(--text-primary)] 
+         focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent 
+         transition-all duration-300 transform hover:scale-[1.02];
+}
+
+.dropdown:not(:disabled):hover {
+  @apply bg-[var(--bg-tertiary)] border-[var(--primary)];
+}
+
+.dropdown optgroup {
+  @apply font-semibold text-[var(--text-secondary)] bg-[var(--bg-secondary)];
+}
+
+.dropdown option {
+  @apply bg-[var(--bg-secondary)] text-[var(--text-primary)] py-1;
+}
+
+.input-area {
+  @apply w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg px-4 py-3 
+         text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] 
+         focus:border-transparent min-h-[200px] resize-none transition-all duration-300 
+         hover:shadow-lg hover:scale-[1.01];
+}
+
+.input-area:hover {
+  @apply bg-[var(--bg-tertiary)] border-[var(--primary)];
+}
+
+.solve-button {
+  @apply w-full bg-[var(--primary)] text-white font-medium py-3 px-4 rounded-lg 
+         transition-all duration-300 transform hover:scale-[1.02] 
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+         shadow-lg hover:shadow-xl disabled:hover:shadow-lg;
+}
+
+.container-dark {
+  @apply bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl p-8 
+         shadow-xl transition-all duration-300 hover:shadow-2xl;
+}
+
+.theme-button {
+  @apply p-3 rounded-lg transition-all duration-300 transform hover:scale-110
+         focus:outline-none focus:ring-2 focus:ring-[var(--primary)];
+}
+
+.theme-button.active {
+  @apply bg-[var(--primary)] text-white shadow-lg scale-110;
+}
+
+.solution-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.solution-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.solution-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.solution-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.provider-card {
+  @apply flex items-center gap-3 p-4 rounded-lg border border-[var(--border-color)] 
+         transition-all duration-300 cursor-pointer hover:shadow-lg hover:scale-[1.02]
+         hover:border-[var(--primary)];
+}
+
+.provider-card.selected {
+  @apply border-[var(--primary)] bg-[var(--bg-tertiary)] shadow-lg scale-[1.02];
+}
